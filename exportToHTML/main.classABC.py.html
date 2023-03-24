@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>main.classABC.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.classABC.py</font>
+</center></td></tr></table>
+<pre><span class="s0">''' 
+from abc import ABC, abstractmethod 
+ 
+class bancodedados(ABC): 
+    @abstractmethod 
+    def conectar(self): 
+        pass 
+ 
+    @abstractmethod 
+    def desconectar(self): 
+        pass 
+ 
+    @abstractmethod 
+    def consultar(self, consulta): 
+        pass 
+ 
+    @abstractmethod 
+    def atualizar(self, atualizacao): 
+        pass 
+ 
+class MySQL(bancodedados): 
+    def conectar(self): 
+        print(&quot;Conectando ao banco de dados MySQL...&quot;) 
+ 
+    def desconectar(self): 
+        print(f&quot;Desconectando do banco de dados MySQL: {consulta}&quot;) 
+ 
+    def consultar(self, consulta): 
+        print(f&quot;Consultando no banco de dados MYSQL...&quot;) 
+ 
+    def atualizar(self, atualizacao): 
+        print(f&quot;Atualizando o BD MySQL: {atualizacao}&quot;) 
+ 
+ 
+if __name__ == '__main__': 
+    obj_bd = MySQL() 
+    obj_bd.conectar() 
+    obj_bd.consultar(&quot;SELECT * FROM tabea&quot;) 
+    obj_bd.atualizar(&quot;Tabela atualizad, coluna = valor&quot;) 
+    obj_bd.desconectar() 
+ 
+ 
+ 
+'''''' 
+from abc import ABC, abstractmethod 
+ 
+ 
+class FormaGeometrica(ABC): 
+    @abstractmethod 
+    def area(self): 
+        pass 
+ 
+    @abstractmethod 
+    def perimetro(self): 
+        pass 
+ 
+ 
+class Quadrado(FormaGeometrica): 
+    def __init__(self, lado): 
+        self._lado = lado 
+ 
+    def lado(self): 
+        return self._lado 
+ 
+    def get_lado(self): 
+        return self._lado 
+ 
+    def set_lado(self, valor): 
+        self._lado = valor 
+ 
+    def area(self): 
+        vl_area = self._lado ** 2 
+        return vl_area 
+ 
+    def perimetro(self): 
+        vl_perimetro = 4 * self._lado 
+        return vl_perimetro 
+ 
+ 
+if __name__ == '__main__': 
+    obj_quad = Quadrado(3) 
+    print(obj_quad.area()) 
+    obj_quad.set_lado(4) 
+    print(obj_quad.area()) 
+    print('Lado:', obj_quad.get_lado()) 
+    print('Area: ', obj_quad.area()) 
+    print('Perimetro: ', obj_quad.perimetro()) 
+     
+     
+'''''''''</span>
+
+<span class="s2">from </span><span class="s1">abc </span><span class="s2">import </span><span class="s1">ABC</span><span class="s2">, </span><span class="s1">abstractmethod</span>
+<span class="s2">import </span><span class="s1">math</span>
+
+
+<span class="s2">class </span><span class="s1">FormaGeometrica(ABC):</span>
+    <span class="s1">@abstractmethod</span>
+    <span class="s2">def </span><span class="s1">area(self):</span>
+        <span class="s2">pass</span>
+
+    <span class="s1">@abstractmethod</span>
+    <span class="s2">def </span><span class="s1">perimetro(self):</span>
+        <span class="s2">pass</span>
+
+    <span class="s2">def </span><span class="s1">mostrar_mensagem(self):</span>
+        <span class="s1">print(</span><span class="s0">&quot;Esta é uma forma geométrica.&quot;</span><span class="s1">)</span>
+
+    <span class="s2">def </span><span class="s1">mostrar_mensagem_subclasse(self):</span>
+        <span class="s1">print(</span><span class="s0">&quot;Esta é uma forma geométrica da subclasse:&quot;</span><span class="s2">, </span><span class="s1">self.__class__.__name__)</span>
+
+
+<span class="s2">class </span><span class="s1">Quadrado(FormaGeometrica):</span>
+    <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">lado):</span>
+        <span class="s1">self.lado = lado</span>
+
+    <span class="s2">def </span><span class="s1">get_lado(self):</span>
+        <span class="s2">return </span><span class="s1">self.lado</span>
+
+    <span class="s2">def </span><span class="s1">set_lado(self</span><span class="s2">, </span><span class="s1">valor):</span>
+        <span class="s1">self.lado = valor</span>
+
+    <span class="s2">def </span><span class="s1">area(self):</span>
+        <span class="s2">return </span><span class="s1">self.lado ** </span><span class="s3">2</span>
+
+    <span class="s2">def </span><span class="s1">perimetro(self):</span>
+        <span class="s2">return </span><span class="s3">4 </span><span class="s1">* self.lado</span>
+
+
+<span class="s2">class </span><span class="s1">Circulo(FormaGeometrica):</span>
+    <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">raio):</span>
+        <span class="s1">self.raio = raio</span>
+
+    <span class="s2">def </span><span class="s1">get_raio(self):</span>
+        <span class="s2">return </span><span class="s1">self.raio</span>
+
+    <span class="s2">def </span><span class="s1">set_raio(self</span><span class="s2">, </span><span class="s1">valor):</span>
+        <span class="s1">self.raio = valor</span>
+
+    <span class="s2">def </span><span class="s1">area(self):</span>
+        <span class="s2">return </span><span class="s1">math.pi * self.raio ** </span><span class="s3">2</span>
+
+    <span class="s2">def </span><span class="s1">perimetro(self):</span>
+        <span class="s2">return </span><span class="s3">2 </span><span class="s1">* math.pi * self.raio</span>
+
+    <span class="s2">def </span><span class="s1">mostrar_area(self):</span>
+        <span class="s1">print(</span><span class="s0">&quot;A área do círculo é:&quot;</span><span class="s2">, </span><span class="s1">round(self.area()</span><span class="s2">, </span><span class="s3">2</span><span class="s1">))</span>
+
+
+<span class="s2">if </span><span class="s1">__name__ == </span><span class="s0">'__main__'</span><span class="s1">:</span>
+    <span class="s4"># Teste Quadrado</span>
+    <span class="s1">obj_quad = Quadrado(</span><span class="s3">3</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s0">&quot;Lado do quadrado:&quot;</span><span class="s2">, </span><span class="s1">obj_quad.get_lado())</span>
+    <span class="s1">obj_quad.set_lado(</span><span class="s3">4</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s0">&quot;Lado do quadrado:&quot;</span><span class="s2">, </span><span class="s1">obj_quad.get_lado())</span>
+    <span class="s1">print(</span><span class="s0">&quot;Área do quadrado:&quot;</span><span class="s2">, </span><span class="s1">obj_quad.area())</span>
+    <span class="s1">print(</span><span class="s0">&quot;Perímetro do quadrado:&quot;</span><span class="s2">, </span><span class="s1">obj_quad.perimetro())</span>
+
+    <span class="s4"># Teste Circulo</span>
+    <span class="s1">obj_circ = Circulo(</span><span class="s3">5</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s0">&quot;Raio do círculo:&quot;</span><span class="s2">, </span><span class="s1">obj_circ.get_raio())</span>
+    <span class="s1">obj_circ.set_raio(</span><span class="s3">6</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s0">&quot;Raio do círculo:&quot;</span><span class="s2">, </span><span class="s1">obj_circ.get_raio())</span>
+    <span class="s1">print(</span><span class="s0">&quot;Área do círculo:&quot;</span><span class="s2">, </span><span class="s1">obj_circ.area())</span>
+    <span class="s1">print(</span><span class="s0">&quot;Perímetro do círculo:&quot;</span><span class="s2">, </span><span class="s1">obj_circ.perimetro())</span>
+    <span class="s1">obj_circ.mostrar_area()</span>
+
+    <span class="s4"># Teste mostrar mensagem</span>
+    <span class="s1">obj_quad.mostrar_mensagem()</span>
+    <span class="s1">obj_circ.mostrar_mensagem()</span>
+    <span class="s1">obj_quad.mostrar_mensagem_subclasse()</span>
+    <span class="s1">obj_circ.mostrar_mensagem_subclasse()</span>
+
+</pre>
+</body>
+</html>
